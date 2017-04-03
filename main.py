@@ -56,5 +56,3 @@ while True:
                            rect_text, default_font, format_text, (255, 0, 0))
         Game.draw.rect(screen, (255, 0, 0), (0, 0, display_info.current_w, display_info.current_h), 2)
         Game.display.update()
-        prev_time = current_time
-        # exit(0)
