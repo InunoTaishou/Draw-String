@@ -84,13 +84,13 @@ def draw_string(surface, string, rect, font, format, color):
 
         # draw on the left side
         if format.align == ALIGNMENT_NEAR:
-            surface.blit(string_surface, (rect.x, y))
+            surface.blit(string_surface, (rect.left, y))
         # draw in the center
         elif format.align == ALIGNMENT_CENTER:
-            surface.blit(string_surface, ((rect.width / 2) - (width / 2), y))
+            surface.blit(string_surface, (rect.left + ((rect.width / 2) - (width / 2)), y))
         # draw on the right side
         elif format.align == ALIGNMENT_FAR:
-            surface.blit(string_surface, (rect.width - width, y))
+            surface.blit(string_surface, (rect.right - width, y))
         # adjust the y position
         y += font_height
     return True
@@ -104,30 +104,33 @@ def format_string(string, font, rect):
     new_string = ''
 
     for line in lines_of_string:
-        while line:
-            i = 0
+        if line == '':
+            new_string += "\n"
+        else:
+            while line:
+                i = 0
 
-            # start building this line
-            while font.size(line[:i])[0] < rect.width and i < len(line):
-                i += 1
+                # start building this line
+                while font.size(line[:i])[0] < rect.width and i < len(line):
+                    i += 1
 
-            # i is less than the length of this line
-            if i < len(line):
-                # find the last word in this line up until the i position
-                i = line.rfind(' ', 0, i) + 1
+                # i is less than the length of this line
+                if i < len(line):
+                    # find the last word in this line up until the i position
+                    i = line.rfind(' ', 0, i) + 1
 
-                # no words found, this string is way too long to be drawn in this area
-                if i == 0:
-                    return False
+                    # no words found, this string is way too long to be drawn in this area
+                    if i == 0:
+                        return False
+                    else:
+                        # append the fitted line to new_string, trimming the trailing ' ' character and add the linefeed
+                        new_string += line[:i - 1] + '\n'
+                # this whole line fits
                 else:
-                    # append the fitted line to new_string, trimming the trailing ' ' character and add the linefeed
-                    new_string += line[:i - 1] + '\n'
-            # this whole line fits
-            else:
-                i = len(line)
-                new_string += line[:i] + '\n'
+                    i = len(line)
+                    new_string += line[:i] + '\n'
 
-            # trim the string we took out of this line
-            line = line[i:]
+                # trim the string we took out of this line
+                line = line[i:]
     # return the properly formatted string, complete with newlines
     return new_string
