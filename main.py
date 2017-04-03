@@ -66,7 +66,7 @@ while True:
     Graphics.draw_string(screen, "Going to write out a very long string to try and fill up this text box.\n"
                                  "Let's see how long I can make this and still have it "
                                  " make sense!!!!!!!\n"
-                                 "It's getting pretty long guys. I hope you're ready!\n\n\n\nHello world! :D\n\n~Signed\n    Author"
+                                 "It's getting pretty long guys. I hope you're ready!\n\n\n\nHello world! :D\n\n~Signed    \n    Author"
                                  "\nEnding line 1\nEnding line 2\nEnding line 3\nEnding line 4 - This line will not be shown",
                            Game.Rect(600 + 4, 150 + 4, 400 - 8, 200 - 4), fps_font, Graphics.StringFormat(Graphics.ALIGNMENT_RIGHT), (255, 0, 0))
     Game.draw.rect(screen, (128, 128, 128), (display_info.current_w - 104, 4, 100, 25))
