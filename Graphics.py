@@ -46,6 +46,9 @@ def draw_string(surface, string, rect, font, format, color):
     i = 0
     y = 0
 
+    if not lines_of_string:
+        return False
+
     if format.line_align == ALIGNMENT_NEAR:
         y = rect.y
     elif format.line_align == ALIGNMENT_CENTER:
@@ -99,7 +102,11 @@ def draw_string(surface, string, rect, font, format, color):
 # returns a list formatted to fit the rect provided
 # font needed to measure each line
 def format_string(string, font, rect):
+    if not isinstance(string, str):
+        string = str(string)
+
     lines_of_string = string.splitlines()
+
     # string that will hold the newly formatted string
     new_string = ''
 
@@ -121,7 +128,7 @@ def format_string(string, font, rect):
 
                     # no words found, this string is way too long to be drawn in this area
                     if i == 0:
-                        return False
+                        return ''
                     else:
                         # append the fitted line to new_string, trimming the trailing ' ' character and add the linefeed
                         new_string += line[:i - 1] + '\n'
