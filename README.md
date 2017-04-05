@@ -7,11 +7,18 @@ String will be drawn using the draw_string function inside the Graphics.py. Para
 Main function to use is in the Graphics.py file
 
 draw_string requires
+
   surface to draw on (surface returned from pygame.display.set_mode)
+  
   string to draw (\n character is supported)
+  
   rect area (rect returned from pygame.Rect(x, y, width, height))
+  
   font object (font returned from pygame.font)
+  
   format object (created using Graphycs.StringFormat. default values are left and top)
+  
   color (color created using the R, G, B values, ex. (255, 255, 255) for white)
+  
 
 Example can be found in main.py
