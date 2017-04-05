@@ -9,7 +9,7 @@ Main function to use is in the Graphics.py file
 draw_string requires
 
   surface to draw on (surface returned from pygame.display.set_mode)
-  
+	
   string to draw (\n character is supported)
   
   rect area (rect returned from pygame.Rect(x, y, width, height))
